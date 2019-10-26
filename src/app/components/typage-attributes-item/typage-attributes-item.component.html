@@ -1,0 +1,35 @@
+<div class="row justify-content-between panel panel-default">
+    <div class="col-8 panel-heading">
+        <div role="tab" id="headingOne">
+            <h6 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" [href]="'#collapse'+i"
+                    aria-expanded="false">
+                    <i class="fas fa-fw fa-folder"></i>
+                    {{ attribute.label }} ({{ attribute.code }})
+                </a>
+            </h6>
+
+        </div>
+    </div>
+    <div class="col-4">
+
+        <button class="btn p-0" (click)="addSynonyme()"><i class="fas fa-fw fa-plus"></i></button>
+        <button class="btn p-0" (click)="edit()"><i class="fas fa-fw fa-pencil-alt"></i></button>
+        <button class="btn p-0" (click)="delete()"><i class="fas fa-fw fa-times"></i></button>
+    </div>
+    <!-- </div> -->
+
+    <div id="collapse{{i}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="">
+            <div [formGroup]="form">
+                <div formArrayName="synonymes">
+                    <div *ngFor="let synonyme of synonymes.controls; let j=index">
+                        <!-- The repeated alias template -->
+                        <input type="text" [formControlName]="j">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

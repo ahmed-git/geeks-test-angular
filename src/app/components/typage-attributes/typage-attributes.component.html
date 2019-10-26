@@ -1,0 +1,30 @@
+<button class="btn btn-primary" (click)="save()">Sauvegarder les changements</button>
+
+<div class="container mt-3">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Tous les attributs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Attributs connus</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Attributs inconnus</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Synonyme d'attributs</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="container">
+    <div class="clearfix"></div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div *ngFor="let att of attributes; let i=index">
+            <!-- <div class=""> -->
+            <app-typage-attributes-item [attribute]="att" [i]="i"></app-typage-attributes-item>
+        </div>
+
+    </div>
+</div>
