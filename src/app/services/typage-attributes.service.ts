@@ -19,7 +19,7 @@ export class TypageAttributesService {
     return this.http.get<any>(this.link);
   }
 
-  save(attributes: any) {
+  saveAll(attributes: any) {
     return this.http.post(this.link, attributes, this.httpOptions);
   }
 }

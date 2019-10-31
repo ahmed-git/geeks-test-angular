@@ -1,4 +1,4 @@
-<button class="btn btn-primary" (click)="save()">Sauvegarder les changements</button>
+<button class="btn btn-primary" (click)="saveAll()">Sauvegarder les changements</button>
 
 <div class="container mt-3">
     <ul class="nav nav-tabs">
@@ -18,13 +18,47 @@
 </div>
 
 
-<div class="container">
+<!-- <div class="container">
     <div class="clearfix"></div>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div *ngFor="let att of attributes; let i=index">
-            <!-- <div class=""> -->
             <app-typage-attributes-item [attribute]="att" [i]="i"></app-typage-attributes-item>
         </div>
 
-    </div>
-</div>
+    </div> 
+
+    
+</div>-->
+<mat-accordion>
+        <div *ngFor="let attribute of attributes; let indexAttribute=index">
+        <mat-expansion-panel (opened)="addButton.hidden=false" (closed)="addButton.hidden=true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="d-flex justify-content-between">
+                        {{ attribute.label }} ({{ attribute.code }})
+                        <button #addButton class="btn p-0" (click)="addSynonyme(indexAttribute);$event.stopPropagation()" [hidden]="true"><i class="fas fa-fw fa-plus-circle"></i></button>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item *ngFor="let synonyme of attribute.synonymes; let indexSynonyme=index">
+                        <!-- <> -->
+                        <!-- <div class="flex-d flex-wrap"> -->
+
+                        
+                            <div class="input-group">
+                                    <input type="text" class="form-control" #myInput type="text" [disabled]="synonyme" (keydown.enter)="saveSynonyme(myInput, indexAttribute, indexSynonyme)"
+                                     [value]="synonyme" aria-describedby="passwordHelpBlock" appAutofocus mat-line>
+                                     <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary p-0" (click)="editSynonyme(myInput)"><i class="fas fa-fw fa-pencil-alt"></i></button>
+                                        <button class="btn btn-outline-secondary p-0" (click)="deleteSynonyme(indexAttribute, indexSynonyme)"><i class="fas fa-fw fa-times"></i></button>
+                                    </div>
+                            </div>
+                           
+             <!-- > -->
+                            
+                        </mat-list-item>
+                    <!-- </div> -->
+                </mat-list>
+            </mat-expansion-panel>
+        </div>
+    </mat-accordion>
+    
